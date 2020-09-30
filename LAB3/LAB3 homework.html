@@ -13076,7 +13076,7 @@ div#notebook {
 
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
@@ -13093,7 +13093,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">make_Dictionary</span><span class="p">(</span><span class="n">train_dir</span><span class="p">):</span>
@@ -13126,7 +13126,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">extract_features</span><span class="p">(</span><span class="n">root_dir</span><span class="p">,</span><span class="n">dictionary</span><span class="p">):</span>
@@ -13145,8 +13145,9 @@ div#notebook {
                             <span class="k">if</span> <span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">word</span><span class="p">:</span>
                                 <span class="n">wordID</span> <span class="o">=</span> <span class="n">i</span>
                                 <span class="n">features_matrix</span><span class="p">[</span><span class="n">docID</span><span class="p">,</span><span class="n">wordID</span><span class="p">]</span> <span class="o">=</span> <span class="n">words</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">word</span><span class="p">)</span>
-            <span class="n">docID</span> <span class="o">=</span> <span class="n">docID</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">docID</span> <span class="o">=</span> <span class="n">docID</span> <span class="o">+</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">features_matrix</span>
+    
 </pre></div>
 
     </div>
@@ -13156,130 +13157,18 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">Path</span> <span class="o">=</span> <span class="s2">&quot;train-mails&quot;</span>
 <span class="nb">dir</span> <span class="o">=</span> <span class="n">make_Dictionary</span><span class="p">(</span><span class="n">Path</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="nb">dir</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">5</span><span class="p">])</span>
+<span class="c1"># print(&#39;finish dir:\n&#39;,dir)</span>
 <span class="n">train_matrix</span> <span class="o">=</span> <span class="n">extract_features</span><span class="p">(</span><span class="n">Path</span><span class="p">,</span><span class="nb">dir</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">train_matrix</span><span class="p">)</span>
+<span class="c1"># print(train_matrix)</span>
+
 <span class="n">Path_test</span> <span class="o">=</span> <span class="s2">&quot;test-mails&quot;</span>
-<span class="n">dir_test</span> <span class="o">=</span> <span class="n">make_Dictionary</span><span class="p">(</span><span class="n">Path_test</span><span class="p">)</span>
-<span class="n">test_matrix</span> <span class="o">=</span> <span class="n">extract_features</span><span class="p">(</span><span class="n">Path_test</span><span class="p">,</span><span class="n">dir_test</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt"></div>
-
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>702
-[(&#39;order&#39;, 1414), (&#39;address&#39;, 1293), (&#39;report&#39;, 1216), (&#39;mail&#39;, 1127), (&#39;send&#39;, 1079)]
-[[0. 0. 0. ... 0. 0. 0.]
- [0. 0. 0. ... 0. 0. 0.]
- [0. 0. 0. ... 0. 0. 0.]
- ...
- [0. 0. 0. ... 0. 0. 0.]
- [0. 0. 0. ... 0. 0. 0.]
- [0. 1. 0. ... 0. 0. 0.]]
-260
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[45]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">NaiveBayes</span><span class="p">:</span>
-<span class="c1">#Divide the sample</span>
-    <span class="k">def</span> <span class="nf">separate_by_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
-        <span class="n">separated</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
-            <span class="n">vector</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">vector</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">separated</span><span class="p">):</span>
-                <span class="n">separated</span><span class="p">[</span><span class="n">vector</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
-            <span class="n">separated</span><span class="p">[</span><span class="n">vector</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">vector</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">separated</span>
-        
-<span class="c1">#Computational features</span>
-    <span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
-        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
-    <span class="k">def</span> <span class="nf">stdev</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
-        <span class="n">avg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">variance</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">([</span><span class="nb">pow</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">avg</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">data</span><span class="p">])</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">variance</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">summarize</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
-        <span class="n">summaries</span> <span class="o">=</span> <span class="p">[(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">attribute</span><span class="p">),</span><span class="bp">self</span><span class="o">.</span><span class="n">stdev</span><span class="p">(</span><span class="n">attribute</span><span class="p">))</span> <span class="k">for</span> <span class="n">attribute</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="o">*</span><span class="n">data</span><span class="p">)]</span>
-        <span class="k">del</span> <span class="n">summaries</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-        <span class="k">return</span> <span class="n">summaries</span>
-
-<span class="c1">#Extract attribute features by category</span>
-    <span class="k">def</span> <span class="nf">summarize_by_class</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
-        <span class="n">separated</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">separate_by_class</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
-        <span class="n">summarizes</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">keyList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">separated</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="k">for</span> <span class="n">classValue</span> <span class="ow">in</span> <span class="n">keyList</span><span class="p">:</span>
-            <span class="n">summarizes</span><span class="p">[</span><span class="n">classValue</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">summarize</span><span class="p">(</span><span class="n">separated</span><span class="p">[</span><span class="n">classValue</span><span class="p">])</span>
-        <span class="k">return</span> <span class="n">summarizes</span>
-
-    <span class="k">def</span> <span class="nf">calculate_probability</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">mean</span><span class="p">,</span><span class="n">stdev</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">stdev</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;?&#39;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="mi">1</span>
-        <span class="n">exponent</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">mean</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">stdev</span><span class="p">,</span><span class="mi">2</span><span class="p">))))</span>
-        <span class="nb">print</span><span class="p">((</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">stdev</span><span class="p">))</span> <span class="o">*</span> <span class="n">exponent</span><span class="p">)</span>
-        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="n">stdev</span><span class="p">))</span> <span class="o">*</span> <span class="n">exponent</span>
-
-    <span class="k">def</span> <span class="nf">calculate_class_probabilities</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">summaries</span><span class="p">,</span> <span class="n">inputVector</span><span class="p">):</span>
-        <span class="n">probabilities</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">keyList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">summaries</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="k">for</span> <span class="n">classValue</span> <span class="ow">in</span> <span class="n">keyList</span><span class="p">:</span>
-            <span class="n">probabilities</span><span class="p">[</span><span class="n">classValue</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">summaries</span><span class="p">[</span><span class="n">classValue</span><span class="p">])):</span>
-                <span class="n">mean</span><span class="p">,</span><span class="n">stdev</span> <span class="o">=</span> <span class="n">summaries</span><span class="p">[</span><span class="n">classValue</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
-                <span class="n">x</span> <span class="o">=</span> <span class="n">inputVector</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
-                <span class="n">probabilities</span><span class="p">[</span><span class="n">classValue</span><span class="p">]</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_probability</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">mean</span><span class="p">,</span> <span class="n">stdev</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">probabilities</span>
-
-    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">summaries</span><span class="p">,</span><span class="n">inputVector</span><span class="p">):</span>
-        <span class="n">probabilities</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">calculate_class_probabilities</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span><span class="n">inputVector</span><span class="p">)</span>
-        <span class="n">bestLabel</span><span class="p">,</span> <span class="n">bestProb</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span>
-        <span class="n">keyList</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">probabilities</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="k">for</span> <span class="n">classValue</span> <span class="ow">in</span> <span class="n">keyList</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">bestLabel</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">probabilities</span><span class="p">[</span><span class="n">classValue</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">bestProb</span><span class="p">:</span>
-                <span class="n">bestProb</span> <span class="o">=</span> <span class="n">probabilities</span><span class="p">[</span><span class="n">classValue</span><span class="p">]</span>
-                <span class="n">bestLabel</span> <span class="o">=</span> <span class="n">classValue</span>
-        <span class="k">return</span> <span class="n">bestLabel</span>
-    <span class="k">def</span> <span class="nf">get_prediction</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">summaries</span><span class="p">,</span> <span class="n">testSet</span><span class="p">):</span>
-        <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">testSet</span><span class="p">)):</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span> <span class="n">testSet</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-            <span class="n">predictions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">predictions</span>
-
-    <span class="k">def</span> <span class="nf">get_accuracy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">predictions</span><span class="p">):</span>
-        <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
-            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">x</span><span class="p">][</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="n">predictions</span><span class="p">[</span><span class="n">x</span><span class="p">]:</span>
-                <span class="n">correct</span> <span class="o">+=</span> <span class="mi">1</span>
-        <span class="k">return</span> <span class="p">(</span><span class="n">correct</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span> <span class="o">*</span> <span class="mi">100</span>
+<span class="n">test_matrix</span> <span class="o">=</span> <span class="n">extract_features</span><span class="p">(</span><span class="n">Path_test</span><span class="p">,</span><span class="nb">dir</span><span class="p">)</span>
+<span class="c1"># print(test_matrix)</span>
 </pre></div>
 
     </div>
@@ -13292,19 +13181,123 @@ div#notebook {
 <div class="prompt input_prompt">In&nbsp;[46]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">train_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">train_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-<span class="n">train_labels</span><span class="p">[</span><span class="mi">351</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="n">NB</span> <span class="o">=</span> <span class="n">NaiveBayes</span><span class="p">()</span>
-<span class="n">train_labels</span> <span class="o">=</span> <span class="n">train_labels</span><span class="p">[:,</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
-<span class="n">data_test</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">train_matrix</span><span class="p">,</span><span class="n">train_labels</span><span class="p">))</span>
-<span class="c1"># print(data_test)</span>
-<span class="c1"># separated = NB.separate_by_class(train_labels)</span>
-<span class="c1"># print(zip(*separated[0]))</span>
-<span class="n">summaries</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">summarize_by_class</span><span class="p">(</span><span class="n">train_labels</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">summaries</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">NaiveBayes</span><span class="p">:</span>
+    <span class="n">train_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">Mean</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">Std</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">Prob</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+        <span class="c1">#divide x by x</span>
+        <span class="n">DivideX</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">DivideX</span><span class="p">):</span>
+                <span class="n">DivideX</span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">=</span><span class="p">[]</span>
+                <span class="n">DivideX</span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">DivideX</span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vstack</span><span class="p">((</span><span class="n">DivideX</span><span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]],</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">train_data</span> <span class="o">=</span> <span class="n">DivideX</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">DivideX</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Mean</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Std</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Prob</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">DivideX</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Mean</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">DivideX</span><span class="p">[</span><span class="n">key</span><span class="p">][:,</span><span class="n">i</span><span class="p">]))</span>
+                <span class="c1">#Divide</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="n">DivideX</span><span class="p">[</span><span class="n">key</span><span class="p">][:,</span><span class="n">i</span><span class="p">]:</span>
+                    <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Mean</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+                        <span class="n">c</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">num</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">DivideX</span><span class="p">[</span><span class="n">key</span><span class="p">][:,</span><span class="n">i</span><span class="p">])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">Prob</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span> <span class="o">+</span> <span class="mi">1</span><span class="o">/</span><span class="n">num</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                <span class="c1">#</span>
+                <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">DivideX</span><span class="p">[</span><span class="n">key</span><span class="p">][:,</span><span class="n">i</span><span class="p">])</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">Std</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mf">0.00001</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">Std</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">DivideX</span><span class="p">[</span><span class="n">key</span><span class="p">][:,</span><span class="n">i</span><span class="p">]))</span>
+        <span class="c1"># print(self.Mean)</span>
+    <span class="k">def</span> <span class="nf">probabilty</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">key</span><span class="p">):</span>
+        <span class="n">prob</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c1"># print(data)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Std</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Mean</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">]:</span>
+                    <span class="n">prob</span> <span class="o">*=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Prob</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">]</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">prob</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">Prob</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">])</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">exp</span> <span class="o">=</span> <span class="n">math</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">Mean</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Std</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="mi">2</span><span class="p">))))</span>
+                <span class="n">prob</span> <span class="o">*=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">Std</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">i</span><span class="p">]))</span> <span class="o">*</span> <span class="n">exp</span>
+        <span class="k">return</span> <span class="n">prob</span>
+    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">MaxProb</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="n">MaxProb_key</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Mean</span><span class="p">:</span>
+                <span class="n">Prob_temp</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">probabilty</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">key</span><span class="p">)</span>
+                <span class="k">if</span><span class="p">(</span><span class="n">Prob_temp</span> <span class="o">&gt;</span> <span class="n">MaxProb</span><span class="p">):</span>
+                    <span class="n">MaxProb</span> <span class="o">=</span> <span class="n">Prob_temp</span>
+                    <span class="n">MaxProb_key</span> <span class="o">=</span> <span class="n">key</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">MaxProb_key</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">def</span> <span class="nf">accuracy</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">prediction</span><span class="p">):</span>
+        <span class="n">correct</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">==</span> <span class="n">prediction</span><span class="p">[</span><span class="n">x</span><span class="p">]:</span>
+                <span class="n">correct</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">correct</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)))</span>
+    <span class="k">def</span> <span class="nf">ConfusionMatrix</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">prediction</span><span class="p">):</span>
+        <span class="n">TP</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">TN</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">FP</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">FN</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">prediction</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">TP</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">prediction</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">FP</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">prediction</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">FN</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">prediction</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">TN</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">TP</span><span class="p">,</span> <span class="n">TN</span><span class="p">,</span> <span class="n">FP</span><span class="p">,</span> <span class="n">FN</span>
+    <span class="k">def</span> <span class="nf">Precision</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">prediction</span><span class="p">):</span>
+        <span class="n">TP</span><span class="p">,</span> <span class="n">TN</span><span class="p">,</span> <span class="n">FP</span><span class="p">,</span> <span class="n">FN</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ConfusionMatrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">prediction</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">TP</span><span class="o">/</span><span class="p">(</span><span class="n">TP</span> <span class="o">+</span> <span class="n">FP</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">Recall</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">prediction</span><span class="p">):</span>
+        <span class="n">TP</span><span class="p">,</span> <span class="n">TN</span><span class="p">,</span> <span class="n">FP</span><span class="p">,</span> <span class="n">FN</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ConfusionMatrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">prediction</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">TP</span><span class="o">/</span><span class="p">(</span><span class="n">TP</span> <span class="o">+</span> <span class="n">FN</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">F1_score</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">,</span><span class="n">prediction</span><span class="p">,</span><span class="n">Beta</span> <span class="o">=</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">TP</span><span class="p">,</span> <span class="n">TN</span><span class="p">,</span> <span class="n">FP</span><span class="p">,</span> <span class="n">FN</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ConfusionMatrix</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">prediction</span><span class="p">)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">Beta</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">Precision</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">prediction</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">Recall</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">prediction</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">Beta</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">Precision</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">prediction</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">Recall</span><span class="p">(</span><span class="n">data</span><span class="p">,</span><span class="n">prediction</span><span class="p">))</span>
+</pre></div>
 
-<span class="n">prob</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">calculate_class_probabilities</span><span class="p">(</span><span class="n">summaries</span><span class="p">,</span><span class="n">train_labels</span><span class="p">[</span><span class="mi">100</span><span class="p">])</span>
-<span class="c1"># print(prob)</span>
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">NB</span> <span class="o">=</span> <span class="n">NaiveBayes</span><span class="p">()</span>
+<span class="n">train_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">train_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">train_labels</span><span class="p">[</span><span class="mi">351</span><span class="p">:</span><span class="mi">701</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">NB</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_matrix</span><span class="p">,</span><span class="n">train_labels</span><span class="p">)</span>
+<span class="n">pred</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_matrix</span><span class="p">)</span>
+<span class="c1"># print(NB.accuracy(train_labels,pred))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;train data:&#39;</span><span class="p">)</span>
+<span class="n">train_accuracy</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">accuracy</span><span class="p">(</span><span class="n">train_labels</span><span class="p">,</span><span class="n">pred</span><span class="p">)</span>
+<span class="n">train_TP</span><span class="p">,</span><span class="n">train_TN</span><span class="p">,</span><span class="n">train_FP</span><span class="p">,</span><span class="n">train_FN</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">ConfusionMatrix</span><span class="p">(</span><span class="n">train_labels</span><span class="p">,</span><span class="n">pred</span><span class="p">)</span>
+<span class="n">train_Precision</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">Precision</span><span class="p">(</span><span class="n">train_labels</span><span class="p">,</span><span class="n">pred</span><span class="p">)</span>
+<span class="n">train_Recall</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">Recall</span><span class="p">(</span><span class="n">train_labels</span><span class="p">,</span><span class="n">pred</span><span class="p">)</span>
+<span class="n">train_F1score</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">F1_score</span><span class="p">(</span><span class="n">train_labels</span><span class="p">,</span><span class="n">pred</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;train_accuracy:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_accuracy</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;train_Precision:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_Precision</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;train_Recall:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_Recall</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;train_F1_score:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_F1score</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -13321,7 +13314,11 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>dict_keys([0.0, 1.0])
+<pre>train data:
+train_accuracy:0.8988603988603988
+train_Precision:0.7971428571428572
+train_Recall:1.0
+train_F1_score:0.8871224165341812
 </pre>
 </div>
 </div>
@@ -13332,13 +13329,51 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="prompt input_prompt">In&nbsp;[48]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pred_test</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_matrix</span><span class="p">)</span>
+<span class="n">test_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">test_matrix</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">test_labels</span><span class="p">[</span><span class="mi">130</span><span class="p">:]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="c1"># print(pred_test)</span>
+<span class="c1"># print(NB.accuracy(test_label,pred_test))</span>
+
+<span class="n">Test_TP</span><span class="p">,</span><span class="n">Test_TN</span><span class="p">,</span><span class="n">Test_FP</span><span class="p">,</span><span class="n">Test_FN</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">ConfusionMatrix</span><span class="p">(</span><span class="n">test_labels</span><span class="p">,</span><span class="n">pred_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test data:&#39;</span><span class="p">)</span>
+<span class="n">test_accuracy</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">accuracy</span><span class="p">(</span><span class="n">test_labels</span><span class="p">,</span><span class="n">pred_test</span><span class="p">)</span>
+<span class="n">test_TP</span><span class="p">,</span><span class="n">test_TN</span><span class="p">,</span><span class="n">test_FP</span><span class="p">,</span><span class="n">test_FN</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">ConfusionMatrix</span><span class="p">(</span><span class="n">test_labels</span><span class="p">,</span><span class="n">pred</span><span class="p">)</span>
+<span class="n">test_Precision</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">Precision</span><span class="p">(</span><span class="n">test_labels</span><span class="p">,</span><span class="n">pred_test</span><span class="p">)</span>
+<span class="n">test_Recall</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">Recall</span><span class="p">(</span><span class="n">test_labels</span><span class="p">,</span><span class="n">pred_test</span><span class="p">)</span>
+<span class="n">test_F1score</span> <span class="o">=</span> <span class="n">NB</span><span class="o">.</span><span class="n">F1_score</span><span class="p">(</span><span class="n">test_labels</span><span class="p">,</span><span class="n">pred_test</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test_accuracy:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">test_accuracy</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test_Precision:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">test_Precision</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test_Recall:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">test_Recall</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;test_F1_score:</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">test_F1score</span><span class="p">))</span>
 </pre></div>
 
     </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>test data:
+test_accuracy:0.8038461538461539
+test_Precision:0.6076923076923076
+test_Recall:1.0
+test_F1_score:0.7559808612440191
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
