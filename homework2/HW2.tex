@@ -1,0 +1,134 @@
+% Homework template for Inference and Information
+% UPDATE: September 26, 2017 by Xiangxiang
+\documentclass[a4paper]{article}
+\usepackage{ctex}
+\ctexset{
+	proofname = \heiti{Proof}
+}
+\usepackage{amsmath, amssymb, amsthm}
+% amsmath: equation*, amssymb: mathbb, amsthm: proof
+\usepackage{moreenum}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs} % toprule
+\usepackage[mathcal]{eucal}
+\usepackage[thehwcnt = 2]{iidef}
+\usepackage{ragged2e}
+\usepackage{microtype}
+
+\thecourseinstitute{SUSTech}
+\thecoursename{Machine-learning}
+%\theterm{Fall 2020}
+\hwname{Homework}
+\slname{\heiti{Solution}}
+\justifying\let\raggedright\justifying
+\begin{document}
+	\courseheader
+	\name{刘禹熙}
+	\begin{enumerate}
+		\setlength{\itemsep}{3\parskip}
+		
+		\item
+		\begin{enumerate}
+			\item
+			True or False If two sets of variables are jointly Gaussian, then the conditional distribution of one set conditioned on the other is again Gaussian. Similarly, the marginal distribution of either set is also Gaussian.
+			\begin{solution}
+				True
+			\end{solution}
+			\item
+			We consider a partitioning of the components of $x$ into three groups $x_a,x_b$, and $x_c$, with $a$ corresponding partitioning of the mean vector $\mu$ and of the covariance matrix $\sum$ in the form
+			$$\mu=\begin{bmatrix}
+			\mu_a\\
+			\mu_b\\
+			\mu_c\\
+			\end{bmatrix}
+			,
+			\Sigma=\begin{bmatrix}
+			\Sigma_{aa} & \Sigma_{ab} & \Sigma_{ac}\\
+			\Sigma_{ba} & \Sigma_{bb} & \Sigma_{bc}\\
+			\Sigma_{ca} & \Sigma_{cb} & \Sigma_{cc}\\
+			\end{bmatrix}
+			$$
+			Find an expression for hte conditional distribution $p(x_a|x_b)$ in which $x_c$ has been marginalized out.
+			\begin{solution}
+				内容...
+			\end{solution}
+			\begin{proof}
+				内容...
+			\end{proof}
+		\end{enumerate}
+		\item
+		Consider a joint distribution over the variable
+		$$
+		z=\begin{bmatrix}
+		x\\
+		y\\
+		\end{bmatrix}
+		$$
+		whose mean and covariance are given by
+		$$
+		\mathbb{E}[z]=\begin{bmatrix}
+		\mu\\
+		A\mu+b\\
+		\end{bmatrix}
+		,
+		cov[z]=\begin{bmatrix}
+		\Lambda^{-1} & \Lambda^{T} \\
+		A\Lambda^{-1}L^{-1} & L^{-1} + A\Lambda^{-1}A^{T}\\
+		\end{bmatrix}
+		.
+		$$
+		\begin{enumerate}
+			\item
+			Show that the marginal distribution p($x$) is given by p($x$) = $\mathcal{N}(x|\mu,\Lambda^{-1})$.
+			\item
+			Show that the conditional distribution $p(y|x)$ is given by $p(y|x)=\mathcal{N}(y|Ax + b,L^{-1})$.
+		\end{enumerate}
+		\begin{solution}
+			内容...
+		\end{solution}
+		
+		\item
+		Show that the convariance matrix $\Sigma$ that maximizes the log likelihood function is given by the sample covariance
+		$$
+		\Sigma_{ML}=\frac{1}{N}\sum_{n=1}^{N}(x_n - \mu_{ML})(x_n - \mu_{ML})^{T}
+		$$
+		Is the final result symmetric and positive definite(provided the sample covariance si nonsingular)?
+		\begin{solution}
+			内容...
+		\end{solution}
+		
+		\item
+		\begin{enumerate}
+			\item
+			Derive an expression for the sequential estimation of the variance of a univariate Gaussian distribution, by starting with the maximum likelihood expression
+			$$
+			\sigma_{ML}^2 = \frac{1}{N}\sum_{n=1}^{N}(x_n - \mu)^2
+			$$
+			Verify that substituting the expression for a Gaussian distribution into the Robbins-Monro sequential estimation formula gives a result of the same form, and hence obtain an expression for the corresponding coefficients $a_N$.
+			\item
+			Derive an expression for the sequential estimation of the covariance of a multivariate Gaussian distribution, by starting with the maximum likelihood expression
+			$$
+			\Sigma_{ML}=\frac{1}{N}\sum_{n=1}^{N}(x_n-\mu_{ML})(x_n-\mu_{ML})^{T}.
+			$$
+			Verify that substituting the expression for a Gaussian distribution into the Robbins-Monro sequential estimation formula gives a result of the same form, and hence obtain an expression for the corresponding coefficients $a_N$.
+		\end{enumerate}
+		\item
+		Consider a D-dimensional Gaussian random variable $x$ with distribution $N(x|\mu,\Sigma)$ in which the covariance $\Sigma$ is known and for which we wish to infer the mean $\mu$ from a set of observations $X=\{x_1,x_2,……,x_N\}$. Given a prior distribution $p(\mu)=N(\mu|\mu_0,\Sigma_0)$, find the corresponding posterior distribution $p(\mu|X)$
+		\begin{solution}
+			内容...
+		\end{solution}
+		
+	\end{enumerate}
+\end{document}
+\begin{equation}
+\end{equation}
+
+%%% Local Variables:
+%%% mode: late\rvx
+%%% TeX-master: t
+%%% End:
