@@ -55,11 +55,52 @@
 			$$
 			Find an expression for hte conditional distribution $p(x_a|x_b)$ in which $x_c$ has been marginalized out.
 			\begin{solution}
-				内容...
+				\begin{equation*}
+					p(x_a,x_b) = \int p(x_a,x_b,x_c)dx_c=N(x|\mu,\Sigma)
+				\end{equation*}
+				\begin{equation*}
+					\mu=\begin{bmatrix}
+					x_a\\
+					x_b
+					\end{bmatrix}
+				\end{equation*}
+				\begin{equation*}
+					\Sigma=\begin{bmatrix}
+					\Sigma_{aa}&\Sigma_{ab}\\
+					\Sigma_{ba}&\Sigma_{bb}\\
+					\end{bmatrix}
+				\end{equation*}
+				\begin{equation*}
+					\Lambda=\Sigma^{-1}=\begin{bmatrix}
+					\Lambda_{aa}&\Lambda_{ab}\\
+					\Lambda_{ba}&\Lambda_{bb}\\
+					\end{bmatrix}
+				\end{equation*}
+				So the $p(x_a|x_B)$ is 
+				\begin{equation*}
+					p(x)=\mathcal{N}(x|\mu,\Sigma)
+				\end{equation*}
+				\begin{equation*}
+					x=\begin{bmatrix}
+					x_a\\
+					x_b\\
+					\end{bmatrix}
+					\mu=\begin{bmatrix}
+					\mu_a\\
+					\mu_b \\
+					\end{bmatrix}
+					\Sigma=\begin{bmatrix}
+					\Sigma_{aa}&\Sigma_{ab}\\
+					\Sigma_{ba}&\Sigma_{bb}
+					\end{bmatrix}
+				\end{equation*}
+				\begin{equation*}
+					\mu_{a|b}=\mu_a+\Sigma_{ab}\Sigma_{bb}(X_B-\mu_b)
+				\end{equation*}
+				\begin{equation*}
+					\Sigma_{a|b}=\Sigma_{aa}-\Sigma_{ab}\Sigma_{bb}^{-1}\Sigma_{ba}
+				\end{equation*}
 			\end{solution}
-			\begin{proof}
-				内容...
-			\end{proof}
 		\end{enumerate}
 		\item
 		Consider a joint distribution over the variable
@@ -85,6 +126,60 @@
 		\begin{enumerate}
 			\item
 			Show that the marginal distribution p($x$) is given by p($x$) = $\mathcal{N}(x|\mu,\Lambda^{-1})$.
+			\begin{solution}
+				First we need to prove that $p(x)$ also obeys Gaussian distribution. And we need to eliminate y. As mentioned before.
+				We assume that
+				\begin{equation*}
+				\begin{split}
+					\Lambda_aa = \Lambda^{-1}\\
+					\Lambda_ab = \Lambda^{T}\\
+					\Lambda_ba = A\Lambda^{-1}\\
+					\Lambda_{bb}=L^{-1}+A\Lambda^{-1}A^T
+				\end{split}
+				\end{equation*}
+				\begin{equation*}				
+				\begin{split}
+					-\frac{1}{2}(x-\mu)^{T}\Sigma^{-1}(x-\mu)=
+					-\frac{1}{2}(x_a-\mu_a)^{T}\Lambda_{aa}(x_a-\mu_a)
+					-\frac{1}{2}(x_a-\mu_a)^{T}\Lambda_{ab}(x_b-\mu_b)\\
+					-\frac{1}{2}(x_b-\mu_b)^{T}\Lambda_{ba}(x_a-\mu_a)
+					-\frac{1}{2}(x_b-\mu_b)^{T}\Lambda_{bb}(x_b-\mu_b)
+				\end{split}
+				\end{equation*}
+				Take out item that only involve $x_b$
+				\begin{equation*}
+					-\frac{1}{2}x_b^T\Lambda_{BB}x_b + x_b^Tm=-\frac{1}{2}(x_b-\Lambda_{aa}^{-1}m)^{T}\Lambda_{bb}(x_b-\Lambda_{bb}^{-1})+\frac{1}{2}m^T\Lambda_{bb}^{-1}m\\
+				\end{equation*}
+				\begin{equation*}
+					m=\Lambda_{bb}\mu_b-\Lambda_{ba}(x_a-\mu_a)
+				\end{equation*}
+				take the quadratic term substituted into the above formula
+				\begin{equation*}
+					\int \exp\{-\frac{1}{2}(x_b-\Lambda_{aa}^{-1}m)^{T}\Lambda_{bb}(x_b-\Lambda_{bb}^{-1})\}dx_b
+				\end{equation*}
+				This is the inverse of a Gaussian distribution and has no effect on the result.
+				The rest of the equation term combined with the above formula is :
+				\begin{equation*}
+				\begin{split}
+					\frac{1}{2}[\Lambda_{bb}\mu_b-\Lambda_{ba}(x_a-\mu_a)]^T\Lambda_{bb}^{-1}[\Lambda_{bb}\mu_b-\Lambda_{ba}(x_a-\mu_a)]\\
+					-\frac{1}{2}x_a\Lambda_{aa}x_a+x_a^T(\Lambda_{aa}\mu_a+\Lambda_{ab}\mu_b)+C\\
+					=-\frac{1}{2}x_a^T(\Lambda_{aa}-\Lambda_{ab}\Lambda_{bb}^{-1}\Lambda_{ba})^{-1}
+					+x_a^T(\Lambda_{aa}-\Lambda_{ab}\Lambda_{bb}^{-1}\Lambda_{ba})^{-1}\mu_a+C
+				\end{split}				
+				\end{equation*}
+				Compare with the above formula
+				\begin{equation*}
+					\Sigma_a=(\Lambda_{aa}-\Lambda_{ba}\Lambda_{bb}^{-1}\Lambda_{ba})^{-1}
+				\end{equation*}
+				We have:
+				\begin{equation*}
+				\begin{split}
+					\mathbb{E}[x_a]=\mu_a\\
+					cov[x_a] = \Sigma_{aa}=\Lambda_{aa}=\Lambda^{-1}\\
+					p(x)=\mathcal{N}(x|\mu,\Lambda^{-1})
+				\end{split}
+				\end{equation*}
+			\end{solution}
 			\item
 			Show that the conditional distribution $p(y|x)$ is given by $p(y|x)=\mathcal{N}(y|Ax + b,L^{-1})$.
 		\end{enumerate}
@@ -97,9 +192,31 @@
 		$$
 		\Sigma_{ML}=\frac{1}{N}\sum_{n=1}^{N}(x_n - \mu_{ML})(x_n - \mu_{ML})^{T}
 		$$
-		Is the final result symmetric and positive definite(provided the sample covariance si nonsingular)?
+		Is the final result symmetric and positive definite(provided the sample covariance is nonsingular)?
 		\begin{solution}
-			内容...
+			We have
+			\begin{equation*}
+				p(X|\mu,\Sigma)=\frac{1}{(2\pi)^{n/2}|\Sigma|^{1/2}}e^{-(x-\mu)^{T}\Sigma^{-1}(x-\mu)/2}
+			\end{equation*}
+			Given i.i.d. data $X=(x_1,...,x_n)^{T}$, the log likelihood function is given by
+			\begin{equation*}
+				\ln p(X|\mu,\Sigma) = -\frac{ND}{2}\ln(2\pi)-\frac{N}{2}\ln|\Sigma|-\frac{1}{2}\sum_{n=1}^{N}(x_n-\mu)^{T}\Sigma^{-1}(x_n-\mu)
+			\end{equation*}
+			Set the derivative of the log likelihood
+			function to zero,
+			\begin{equation*}
+				\frac{\partial}{\partial\mu}\ln p(X|\mu,\Sigma)=\sum_{n=1}^{N}\Sigma^{-1}(x_n - \mu)=0
+			\end{equation*}
+			\begin{equation*}
+				\frac{\partial}{\partial\Sigma}\ln p(X|\mu,\Sigma)=\frac{N}{2}(\Sigma^{-1}-\Sigma^{-1}\frac{1}{N}\sum_{n=1}^{N}(x^{n}-\hat{\mu_{ML}})(x^{n}-\mu_{ML})^{T}\Sigma^{-1})^{T}=0
+			\end{equation*}
+			solve to obtain
+			\begin{equation*}
+				\hat{\mu_{ML}}=\frac{1}{N}\sum_{n=1}^{N}x_n
+			\end{equation*}
+			\begin{equation*}
+				\hat{\Sigma_{ML}}=\frac{1}{N}\sum_{n=1}^{N}(x_n-\hat{\mu_{ML}})(x_n - \hat{\mu_{ML}})^{T}
+			\end{equation*}
 		\end{solution}
 		
 		\item
@@ -110,6 +227,34 @@
 			\sigma_{ML}^2 = \frac{1}{N}\sum_{n=1}^{N}(x_n - \mu)^2
 			$$
 			Verify that substituting the expression for a Gaussian distribution into the Robbins-Monro sequential estimation formula gives a result of the same form, and hence obtain an expression for the corresponding coefficients $a_N$.
+			\begin{solution}
+				\begin{equation*}
+					L(x_1,x_2,...x_n|\mu,\sigma^2)=\prod_{i=1}^{N}\frac{1}{\sqrt{2\pi}\sigma}\exp^{\frac{(x_i-\mu)^2}{2\sigma^2}}
+				\end{equation*}
+				\begin{equation*}
+					\ln L(x_1,x_2,...x_n|\mu,\sigma^2)=-\frac{1}{2\sigma^2}\sum_{n=1}^{N}(x_n-\mu)^2-\frac{N}{2}\ln \sigma^2-\frac{N}{2}\ln (2\pi)
+				\end{equation*}
+				\begin{equation*}
+					\frac{\partial \ln L}{\partial \sigma^2}=\frac{1}{2\sigma^4}\sum_{n=1}^{N}(x_n-\mu)^2-\frac{N}{2\sigma^2}=0
+				\end{equation*}
+				\begin{equation*}
+					\sigma_{ML}^2=\frac{1}{N}\sum_{n=1}^{N}(x_n-\mu)^2
+				\end{equation*}
+				Robbins-Monro:
+				\begin{equation*}
+					\frac{\partial}{\partial \sigma^2}{\frac{1}{N}\sum_{n=1}^{N}-\ln L(x_n|\sigma^2)}=0
+				\end{equation*}
+				\begin{equation*}
+					\lim\limits_{n \to \infty}\frac{1}{N}\sum_{n=1}^{N}\frac{\partial}{\partial \sigma^2}\ln L(x_n|\sigma^2)=E_x[-\frac{\partial}{\partial \sigma^2}\ln L(x|\sigma^2)]
+				\end{equation*}
+				On the right side of the equation, we use Robbins-Monro
+				\begin{equation*}
+					\sigma^2_{(N)}=\sigma^2_{(N-1)}-\alpha_{N-1}\frac{\partial}{\partial \sigma^2_{(N-1)}}[-\ln L(x_n|\sigma^2)]
+				\end{equation*}
+				\begin{equation*}
+					z=-\frac{\partial}{\partial \sigma^2_{ML}}\ln L(x|\mu_{ML},\sigma^2)=\frac{1}{N}\sum_{n=1}^{N}(x_n-\mu_{ML})^2
+				\end{equation*}
+			\end{solution}
 			\item
 			Derive an expression for the sequential estimation of the covariance of a multivariate Gaussian distribution, by starting with the maximum likelihood expression
 			$$
@@ -120,8 +265,53 @@
 		\item
 		Consider a D-dimensional Gaussian random variable $x$ with distribution $N(x|\mu,\Sigma)$ in which the covariance $\Sigma$ is known and for which we wish to infer the mean $\mu$ from a set of observations $X=\{x_1,x_2,……,x_N\}$. Given a prior distribution $p(\mu)=N(\mu|\mu_0,\Sigma_0)$, find the corresponding posterior distribution $p(\mu|X)$
 		\begin{solution}
-			内容...
+			\begin{equation*}
+				p(\mu|X)\propto p(X|\mu)p(\mu)
+			\end{equation*}
+			we can get posterior distribution
+			\begin{equation*}
+			\begin{split}
+				p(\mu|X)=\mathcal{N}(\mu|\mu_N,\Sigma_N)\\
+				\mu_N=\frac{\Sigma}{N\Sigma_0+\Sigma}\mu_0+\frac{N\Sigma_0}{N\Sigma_0+\Sigma}\mu_{ML}\\
+				\frac{1}{\Sigma_N}=\frac{1}{\Sigma_0}+\frac{N}{\Sigma}\\
+				\hat{\mu_{ML}}=\frac{1}{N}\sum_{n=1}^{N}X_n
+			\end{split}
+			\end{equation*}
 		\end{solution}
+		\item 
+		program question
+		\begin{enumerate}
+			\item
+			How could having a larger dataset influence the performance of KNN?
+			\begin{solution}
+			The execution time of the algorithm will greatly increase, beacuse the KNN algorithm needs to select the nearest K points, it first needs to calcution the distance among the all points, and then sort them by distance. The time complexity is $O(nlogn)$. As the amount of the data increase, the execution time will increase significantly.
+			\end{solution}
+			\item
+			Tabulate your results in Table 1 for the validation set as shown below and include that in your file.
+			\begin{center}
+			\begin{tabular}{ccc}
+				\hline
+				K&Norm&Accuarcy(\%)\\
+				3&L1&88.4\\
+				3&L2&88.4\\
+				3&L-inf&89.8\\
+				\hline
+				5&L1&91.3\\
+				5&L2&89.8\\
+				5&L-inf&89.8\\
+				\hline
+				7&L1&89.8\\
+				7&L2&91.3\\
+				7&L-inf&89.8\\
+				\hline
+			\end{tabular}
+			\end{center}
+			\item
+			Finally, mention the best K and the norm combination you have settled upon from the above table and report the accuracy on the test set using that combination.
+			\begin{solution}
+				In the above table, we can see when the K=5\& L1 norm and k=7 \&l2 norm we can get the best accuracy with 91.3\%
+			\end{solution}
+		\end{enumerate}
 		
 	\end{enumerate}
 \end{document}
