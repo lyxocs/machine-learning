@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.12)  17 OCT 2020 20:11
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.12)  17 OCT 2020 20:55
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**HW2.tex
-(./HW2.tex
+**HW3.tex
+(./HW3.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-03-06>
 (d:/texlive/2020/texmf-dist/tex/latex/base/article.cls
@@ -581,8 +581,8 @@ Package microtype Info: Loading configuration file microtype.cfg.
 
 (d:/texlive/2020/texmf-dist/tex/latex/microtype/microtype.cfg
 File: microtype.cfg 2019/11/18 v2.7d microtype main configuration file (RS)
-)) (./HW2.aux)
-\openout1 = `HW2.aux'.
+)) (./HW3.aux)
+\openout1 = `HW3.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 29.
 LaTeX Font Info:    ... okay on input line 29.
@@ -1012,6 +1012,11 @@ Package microtype Info: Character `textquotedblright ' is missing
 (microtype)             in font `TU/SimSun(0)/m/n/10.53937'.
 (microtype)             Ignoring protrusion settings for this character.
 
+Underfull \hbox (badness 10000) in paragraph at lines 35--36
+
+ []
+
+
 Package fontspec Info: Could not resolve font "SimHei/BI" (it probably doesn't
 (fontspec)             exist).
 
@@ -1034,7 +1039,7 @@ Package fontspec Info: Font family 'SimHei(0)' created for font 'SimHei' with
 (fontspec)             <->"SimHei/OT:script=hani;language=dflt;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
-LaTeX Font Info:    Trying to load font information for U+eus on input line 81.
+LaTeX Font Info:    Trying to load font information for U+eus on input line 46.
 
 (d:/texlive/2020/texmf-dist/tex/latex/amsfonts/ueus.fd
 File: ueus.fd 2013/01/14 v3.01 Euler Script
@@ -1043,42 +1048,23 @@ File: ueus.fd 2013/01/14 v3.01 Euler Script
 File: mt-eus.cfg 2006/07/28 v1.2 microtype config. file: AMS Euler Script (RS)
 ) [1
 
-]
-Overfull \hbox (75.52748pt too wide) detected at line 148
-[]
+] [2]
+Overfull \hbox (0.56967pt too wide) in paragraph at lines 94--95
+[]\TU/lmr/m/n/10.53937 The probabiliuty density function of $\OML/cmm/m/it/10.5
+3937 X \OMS/cmsy/m/n/10.53937 ^^X$ \TU/lmr/m/n/10.53937 Gamma($\OML/cmm/m/it/10
+.53937 ^^K$\TU/lmr/m/n/10.53937 ,$\OML/cmm/m/it/10.53937 ^^U$\TU/lmr/m/n/10.539
+37 ) is $\OML/cmm/m/it/10.53937 f[]\OT1/cmr/m/n/10.53937 (\OML/cmm/m/it/10.5393
+7 x\OT1/cmr/m/n/10.53937 ) =
  []
 
-
-Overfull \hbox (46.99997pt too wide) detected at line 148
-[]
- []
-
-[2]
-Overfull \hbox (8.70372pt too wide) detected at line 212
-[] [] \OML/cmm/m/it/10.53937 p\OT1/cmr/m/n/10.53937 (\OML/cmm/m/it/10.53937 X\O
-MS/cmsy/m/n/10.53937 j\OML/cmm/m/it/10.53937 ^^V; \OT1/cmr/m/n/10.53937 ^^F) = 
-[](^^F[] \OMS/cmsy/m/n/10.53937 ^^@ \OT1/cmr/m/n/10.53937 ^^F[][] [](\OML/cmm/m
-/it/10.53937 x[] \OMS/cmsy/m/n/10.53937 ^^@ []\OT1/cmr/m/n/10.53937 )(\OML/cmm/
-m/it/10.53937 x[] \OMS/cmsy/m/n/10.53937 ^^@ \OML/cmm/m/it/10.53937 ^^V[]\OT1/c
-mr/m/n/10.53937 )[]^^F[])[] = 0
- []
-
-[3] [4]
-Overfull \hbox (6.31662pt too wide) in paragraph at lines 266--267
-\TU/lmr/m/n/10.53937 wish to infer the mean $\OML/cmm/m/it/10.53937 ^^V$ \TU/lm
-r/m/n/10.53937 from a set of observations $\OML/cmm/m/it/10.53937 X \OT1/cmr/m/
-n/10.53937 = \OMS/cmsy/m/n/10.53937 f\OML/cmm/m/it/10.53937 x[]; x[]; [][]; x[]
-\OMS/cmsy/m/n/10.53937 g$\TU/lmr/m/n/10.53937 .
- []
-
-[5] [6] (./HW2.aux) ) 
+[3] (./HW3.aux) ) 
 Here is how much of TeX's memory you used:
  13283 strings out of 479418
  296512 string characters out of 5888105
- 627825 words of memory out of 5000000
+ 627830 words of memory out of 5000000
  30522 multiletter control sequences out of 15000+600000
  538816 words of font info for 71 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 62i,17n,100p,817b,702s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,15n,100p,817b,618s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on HW2.pdf (6 pages).
+Output written on HW3.pdf (3 pages).
