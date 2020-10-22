@@ -38,7 +38,30 @@
 		\end{equation*}
 		Find an expression for the solution $w^*$ that minimizes this error function. Give two alternative interpretations of the weighted sum-of-squares error function in terms of (i) data dependent noise variance and (ii) replicated data points.
 		\begin{solution}
-			内容...
+			\begin{equation*}
+			\begin{aligned}
+				E_D(w)
+				&=\frac{1}{2}\sum_{n=1}^{N}r_n \{t_n-w^T \phi(x_n) \}^2 \\
+				&=\frac{1}{2}(\phi w - t)^TR(\phi w - t)\\
+				&=\frac{1}{2}(w^T\phi^T R \phi w - w^T\phi^T R t - t^T R\phi w + t^TRt)\\
+				&=\frac{1}{2}(w^T\phi^T R \phi w - 2t^T R \phi w + t^TRt)
+			\end{aligned}
+			\end{equation*}
+			and we defined $R=diag(r_1,r_2,...r_N).$
+			Taking the gradient of the error function
+			\begin{equation*}
+			\begin{aligned}
+				\nabla E_D(w)=\phi^TR\phi w - t^TR\phi
+			\end{aligned}
+			\end{equation*}
+			\begin{equation*}
+				\begin{aligned}
+				w^*
+				&= (\phi^T R \phi)^{-1}t^TR\phi\\
+				&= (\phi^T R \phi)^{-1}\phi^TRt
+				\end{aligned}
+			\end{equation*}
+			If R = I, we get the standard solution$w^* = (\phi^T\phi)^{-1}\phi^Tt$, and $r_n$ can be seen as a precision parameter.$r_n$ can also be regarded as an effective number of replicatesd observations of data point$(x_n,t_n)$
 		\end{solution}
 		\item
 		We saw in Section 2.3.6 that the conjugate prior for a Gauussian distribution with unknown mean and unknown precision (inverse  variance) is a normal-gamma distribution. This property also holds for the case of the conditional Gaussian distribution $p(t|x,w,\beta)$ of the linear regression model. If we consider the likelihood function,
@@ -54,6 +77,52 @@
 			p(w,\beta|t)=\mathcal{N}(w|m_N,\beta^{-1}S_N)Gam(\beta|a_N,b_N)
 		\end{equation*}
 		and find expressions for the posterior parameters $m_N$, $S_N$, $a_N$, and $b_N$.
+		\begin{solution}
+			\begin{equation*}
+				\begin{aligned}
+				\ln p(w,\beta|t)
+				&=\ln p(w,\beta) + \sum_{n = 1}^{N} \ln p(t_n|w^T\phi(x_n),\beta^{-1})\\
+				&=\frac{M}{2}\ln \beta-\frac{1}{2}\ln |S_0| - \frac{\beta}{2}(w-m_0)^TS_0^{-1}(w-m_0)\\
+				&-b_0\beta +(a_0-1)\ln \beta\\
+				&+\frac{N}{2}\ln \beta-\frac{\beta}{2}\sum_{n=1}^{N}\{w^T\phi(x_n)-t_n\}^2+const
+				\end{aligned}
+			\end{equation*}
+			\begin{equation*}
+				\begin{aligned}
+					p(w,\beta|t)=p(w|\beta,t)p(\beta|t)
+				\end{aligned}
+			\end{equation*}
+			\begin{equation*}
+				\begin{aligned}
+				\ln (w|\beta,t) = -\frac{\beta}{2}w^T [\phi^T \phi + S_0^{-1}]w + w^T[\beta S_0^{-1}m_0 + \beta\phi^Tt] + const
+				\end{aligned}
+			\end{equation*}
+			we can see that $p(w|\beta,t)$ is a Gaussian distribution with mean and covariance given by
+			\begin{equation*}
+				\begin{aligned}
+				m_N = S_N[S_0^{-1}m_0+\phi^Tt] \\
+				\beta S_N^{-1} = \beta(S_0^{-1} +\phi^T\phi)
+				\end{aligned}
+			\end{equation*}
+			\begin{equation*}
+				\begin{aligned}
+				\ln p(\beta|t)
+				&=-\frac{\beta}{2}m_0^TS_0^{-1}m_0+\frac{\beta}{2}m_N^TS_N^{-1}m_N\\
+				&+\frac{N}{2}\ln \beta - b_0 \beta + (a_0 - 1)\ln \beta - \frac{\beta}{2}\sum_{n=1}^{N}t_n^2+const
+				\end{aligned}
+			\end{equation*}
+			We recognize this as the log of a Gamma distribution. And we have
+			\begin{equation*}
+				\begin{aligned}
+				a_N=a_0+\frac{N}{2}
+				\end{aligned}
+			\end{equation*}
+			\begin{equation*}
+				\begin{aligned}
+					b_N=b_0+\frac{1}{2}(m_0^TS_0^{-1}m_0-m_N^TS_N^{-1}m_N+\sum_{n=1}^{N}t_n^2)
+				\end{aligned}
+			\end{equation*}
+		\end{solution}
 		\item
 		Show that the integration over w in the Bayesian linear regression model gives the result
 		\begin{equation*}
@@ -63,6 +132,18 @@
 		\begin{equation*}
 			\ln p(t|\alpha,\beta)=\frac{M}{2}+\frac{N}{2}\ln\beta - E(m_N)-\frac{1}{2}\ln|A|-\frac{N}{2}(2\pi)
 		\end{equation*}
+		\begin{solution}
+			Using $p(t|\alpha,\beta)=(\frac{\beta}{2\pi})^{N/2}(\frac{\alpha}{2\pi})^{M/2}\int\exp\{-E(w)\}dw$
+			we have
+			\begin{equation*}
+				\begin{aligned}
+				\ln p(t|\alpha,\beta)=\frac{M}{2}(\ln \alpha - \ln(2*\pi))+\frac{N}{2}(\ln \beta - \ln (2\pi))+ln \int exp\{-E(w)\}dw\\
+				=\frac{M}{2}(\ln a-\ln(2\pi))+\frac{N}{2}(\ln \beta - \ln(2\pi))-E(m_N)-\frac{1}{2}\ln |A|+\frac{M}{2}\ln (2\pi)
+				\end{aligned}
+			\end{equation*}
+			which equals $
+			\ln p(t|\alpha,\beta)=\frac{M}{2}+\frac{N}{2}\ln\beta - E(m_N)-\frac{1}{2}\ln|A|-\frac{N}{2}(2\pi)$.
+		\end{solution}
 		\item
 		Consider real-valued variables X and Y. The Y variable is generated, conditional on X, from the following process:
 		\begin{equation*}
