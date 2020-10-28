@@ -1,0 +1,187 @@
+% Homework template for Inference and Information
+% UPDATE: September 26, 2017 by Xiangxiang
+\documentclass[a4paper]{article}
+\usepackage{ctex}
+\ctexset{
+	proofname = \heiti{Proof}
+}
+\usepackage{amsmath, amssymb, amsthm}
+% amsmath: equation*, amssymb: mathbb, amsthm: proof
+\usepackage{moreenum}
+\usepackage{mathtools}
+\usepackage{url}
+\usepackage{bm}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{booktabs} % toprule
+\usepackage[mathcal]{eucal}
+\usepackage[thehwcnt = 3]{iidef}
+\usepackage{ragged2e}
+\usepackage{microtype}
+
+\thecourseinstitute{SUSTech}
+\thecoursename{Machine-learning}
+\theterm{Fall 2020}
+\hwname{Homework}
+\slname{\heiti{Solution}}
+\justifying\let\raggedright\justifying
+\begin{document}
+	\courseheader
+	\name{刘禹熙}
+	\begin{enumerate}
+		\setlength{\itemsep}{3\parskip}
+		\item
+		Consider a data set in which each data point $t_n$ is associated with a weighting factor $r_n > 9$, so that the sum-of-squares error function becomes\\
+		\begin{equation*}
+		E_D(w)=\frac{1}{2}\sum_{n=1}^{N}r_n \{t_n-w^T \phi(x_n) \}^2
+		\end{equation*}
+		Find an expression for the solution $w^*$ that minimizes this error function. Give two alternative interpretations of the weighted sum-of-squares error function in terms of (i) data dependent noise variance and (ii) replicated data points.
+		\begin{solution}
+			\begin{equation*}
+			\begin{aligned}
+				E_D(w)
+				&=\frac{1}{2}\sum_{n=1}^{N}r_n \{t_n-w^T \phi(x_n) \}^2 \\
+				&=\frac{1}{2}(\phi w - t)^TR(\phi w - t)\\
+				&=\frac{1}{2}(w^T\phi^T R \phi w - w^T\phi^T R t - t^T R\phi w + t^TRt)\\
+				&=\frac{1}{2}(w^T\phi^T R \phi w - 2t^T R \phi w + t^TRt)
+			\end{aligned}
+			\end{equation*}
+			and we defined $R=diag(r_1,r_2,...r_N).$
+			Taking the gradient of the error function
+			\begin{equation*}
+			\begin{aligned}
+				\nabla E_D(w)=\phi^TR\phi w - t^TR\phi
+			\end{aligned}
+			\end{equation*}
+			\begin{equation*}
+				\begin{aligned}
+				w^*
+				&= (\phi^T R \phi)^{-1}t^TR\phi\\
+				&= (\phi^T R \phi)^{-1}\phi^TRt
+				\end{aligned}
+			\end{equation*}
+			If R = I, we get the standard solution$w^* = (\phi^T\phi)^{-1}\phi^Tt$, and $r_n$ can be seen as a precision parameter.$r_n$ can also be regarded as an effective number of replicatesd observations of data point$(x_n,t_n)$
+		\end{solution}
+		\item
+		We saw in Section 2.3.6 that the conjugate prior for a Gauussian distribution with unknown mean and unknown precision (inverse  variance) is a normal-gamma distribution. This property also holds for the case of the conditional Gaussian distribution $p(t|x,w,\beta)$ of the linear regression model. If we consider the likelihood function,
+		\begin{equation*}
+			p(t|X,w,\beta)=\prod_{n = 1}^{N}\mathcal{N}(t_n|w^T\phi(X_n),\beta^{-1})
+		\end{equation*}
+		then the conjugate prior for $w$ and $\beta$ is given by
+		\begin{equation*}
+			p(w,\beta)=\mathcal{N}(w|m_0,\beta^{-1}S_0)Gam(\beta|a_0,b_0)
+		\end{equation*}
+		Show that the correspondint posterior distribution takes the same functional form, so that
+		\begin{equation*}
+			p(w,\beta|t)=\mathcal{N}(w|m_N,\beta^{-1}S_N)Gam(\beta|a_N,b_N)
+		\end{equation*}
+		and find expressions for the posterior parameters $m_N$, $S_N$, $a_N$, and $b_N$.
+		\begin{solution}
+			\begin{equation*}
+				\begin{aligned}
+				\ln p(w,\beta|t)
+				&=\ln p(w,\beta) + \sum_{n = 1}^{N} \ln p(t_n|w^T\phi(x_n),\beta^{-1})\\
+				&=\frac{M}{2}\ln \beta-\frac{1}{2}\ln |S_0| - \frac{\beta}{2}(w-m_0)^TS_0^{-1}(w-m_0)\\
+				&-b_0\beta +(a_0-1)\ln \beta\\
+				&+\frac{N}{2}\ln \beta-\frac{\beta}{2}\sum_{n=1}^{N}\{w^T\phi(x_n)-t_n\}^2+const
+				\end{aligned}
+			\end{equation*}
+			\begin{equation*}
+				\begin{aligned}
+					p(w,\beta|t)=p(w|\beta,t)p(\beta|t)
+				\end{aligned}
+			\end{equation*}
+			\begin{equation*}
+				\begin{aligned}
+				\ln (w|\beta,t) = -\frac{\beta}{2}w^T [\phi^T \phi + S_0^{-1}]w + w^T[\beta S_0^{-1}m_0 + \beta\phi^Tt] + const
+				\end{aligned}
+			\end{equation*}
+			we can see that $p(w|\beta,t)$ is a Gaussian distribution with mean and covariance given by
+			\begin{equation*}
+				\begin{aligned}
+				m_N = S_N[S_0^{-1}m_0+\phi^Tt] \\
+				\beta S_N^{-1} = \beta(S_0^{-1} +\phi^T\phi)
+				\end{aligned}
+			\end{equation*}
+			\begin{equation*}
+				\begin{aligned}
+				\ln p(\beta|t)
+				&=-\frac{\beta}{2}m_0^TS_0^{-1}m_0+\frac{\beta}{2}m_N^TS_N^{-1}m_N\\
+				&+\frac{N}{2}\ln \beta - b_0 \beta + (a_0 - 1)\ln \beta - \frac{\beta}{2}\sum_{n=1}^{N}t_n^2+const
+				\end{aligned}
+			\end{equation*}
+			We recognize this as the log of a Gamma distribution. And we have
+			\begin{equation*}
+				\begin{aligned}
+				a_N=a_0+\frac{N}{2}
+				\end{aligned}
+			\end{equation*}
+			\begin{equation*}
+				\begin{aligned}
+					b_N=b_0+\frac{1}{2}(m_0^TS_0^{-1}m_0-m_N^TS_N^{-1}m_N+\sum_{n=1}^{N}t_n^2)
+				\end{aligned}
+			\end{equation*}
+		\end{solution}
+		\item
+		Show that the integration over w in the Bayesian linear regression model gives the result
+		\begin{equation*}
+			\int \exp\{-E(w)\}dw=\exp\{E(m_N)\}(2\pi)^{M/2}|A|^{-1/2}
+		\end{equation*}
+		Hence show that the log marginal likelihood is given by
+		\begin{equation*}
+			\ln p(t|\alpha,\beta)=\frac{M}{2}+\frac{N}{2}\ln\beta - E(m_N)-\frac{1}{2}\ln|A|-\frac{N}{2}(2\pi)
+		\end{equation*}
+		\begin{solution}
+			Using $p(t|\alpha,\beta)=(\frac{\beta}{2\pi})^{N/2}(\frac{\alpha}{2\pi})^{M/2}\int\exp\{-E(w)\}dw$
+			we have
+			\begin{equation*}
+				\begin{aligned}
+				\ln p(t|\alpha,\beta)=\frac{M}{2}(\ln \alpha - \ln(2*\pi))+\frac{N}{2}(\ln \beta - \ln (2\pi))+ln \int exp\{-E(w)\}dw\\
+				=\frac{M}{2}(\ln a-\ln(2\pi))+\frac{N}{2}(\ln \beta - \ln(2\pi))-E(m_N)-\frac{1}{2}\ln |A|+\frac{M}{2}\ln (2\pi)
+				\end{aligned}
+			\end{equation*}
+			which equals $
+			\ln p(t|\alpha,\beta)=\frac{M}{2}+\frac{N}{2}\ln\beta - E(m_N)-\frac{1}{2}\ln|A|-\frac{N}{2}(2\pi)$.
+		\end{solution}
+		\item
+		Consider real-valued variables X and Y. The Y variable is generated, conditional on X, from the following process:
+		\begin{equation*}
+		\begin{split}
+			\varepsilon \sim {\rm N}(0,\sigma^2) \\
+			Y = aX+\varepsilon
+		\end{split}
+		\end{equation*}
+		where every $\varepsilon$ is an independent variable, called a noise term, which is drawn from a Gaussian distribution with mean 0, and standard deviation $\sigma$. This is a one-feature linear regression model, where a is the only weight parameter. The conditional probability of Y has distribution $p(Y|X,a)\sim{\rm N}(aX,\sigma^2)$, so it can be written as 
+		\begin{equation*}
+			p(Y|X,a)=\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{1}{2\sigma^2}(Y-aX)^2)
+		\end{equation*} 
+		Assume we have a training dataset of n pairs $(X_i,Y_i)$ for $i=1...n$, and $\sigma$ is known. Derive the maximum likelihood estimate of the parameter a in terms of the training example $X_i^{'}s$ and $Y_i^{'}s$. We recommend you start with the simplest form of the problem:
+		\begin{equation*}
+			{\rm F}(a)=\frac{1}{2}\sum_{i}(Y_i - aX_i)^2
+		\end{equation*} 
+		\item
+		If a data point y follows the Posson distribution with rate parameter $\theta$, then the probability of a single observation y is 
+		\begin{equation*}
+			p(y|\theta)=\frac{\theta^ye^{-\theta}}{y!}, for \  y = 0,1,2,...
+		\end{equation*}
+		You are given data points $y_1,...,y_n$ independently drawn from a Poisson distribution with parameter $\theta$. Write down the log-likelihood of the data as a function of $\theta$.
+		\item
+		Suppose you are given n obserbations, $X_1,...X_n$, independent and identically distributed with a Gamma$(\alpha,\lambda)$ distribution. The following informaztion might be useful for the problem.
+		\begin{enumerate}
+			\item
+			If $X \sim $ Gamma$(\alpha,\lambda)$, then $\mathbb{E}$ [X]=$\frac{\alpha}{\lambda}	$ and $\mathbb{E}$ [$X^2$]=$\frac{\alpha(\alpha + 1)}{\lambda^2}$
+			\item
+			The probabiliuty density function of $X \sim$ Gamma($\alpha$,$\lambda$) is $f_X(x)=\frac{1}{\Gamma(\alpha)}\lambda^\alpha x^{\alpha - 1}e^{-\lambda x}$ where the function $\Gamma$ is only dependent on $\alpha$ and not $\lambda$.
+		\end{enumerate}
+		Suppose, we are given a known, fixed value for $\alpha$. Compute the maximum likelihood estimator for $\lambda$.
+		
+	\end{enumerate}
+\end{document}
+\begin{equation}
+\end{equation}
+
+%%% Local Variables:
+%%% mode: late\rvx
+%%% TeX-master: t
+%%% End:

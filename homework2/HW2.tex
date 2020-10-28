@@ -312,6 +312,13 @@
 				In the above table, we can see when the K=5\& L1 norm and k=7 \&l2 norm we can get the best accuracy with 91.3\%
 			\end{solution}
 		\end{enumerate}
+		\begin{solution}
+			$L(w) = \prod \limits_{i=1}^n p(Y^i|X^i;w)^{Y^i}(1-h(X^i;w))^{1-Y^i}$
+			
+			$l(w) = \ln L(w) = \sum \limits_{i= 1}^{n}Y^i \ln (h(X^i;w)) + (1-Y^i)\ln(1-h(X^i;w))$
+			
+			$\frac{\partial}{\partial w_j}l(w) = (y-h(X;w))x_j$
+		\end{solution}
 		
 	\end{enumerate}
 \end{document}
