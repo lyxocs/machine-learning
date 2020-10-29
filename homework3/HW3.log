@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.12)  22 OCT 2020 16:16
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020/W32TeX) (preloaded format=xelatex 2020.8.12)  27 OCT 2020 17:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1053,8 +1053,8 @@ Overfull \hbox (34.58582pt too wide) detected at line 143
 [][]
  []
 
-[3]
-Overfull \hbox (0.56967pt too wide) in paragraph at lines 175--176
+[3] [4]
+Overfull \hbox (0.56967pt too wide) in paragraph at lines 208--209
 []\TU/lmr/m/n/10.53937 The probabiliuty density function of $\OML/cmm/m/it/10.5
 3937 X \OMS/cmsy/m/n/10.53937 ^^X$ \TU/lmr/m/n/10.53937 Gamma($\OML/cmm/m/it/10
 .53937 ^^K$\TU/lmr/m/n/10.53937 ,$\OML/cmm/m/it/10.53937 ^^U$\TU/lmr/m/n/10.539
@@ -1062,7 +1062,7 @@ Overfull \hbox (0.56967pt too wide) in paragraph at lines 175--176
 7 x\OT1/cmr/m/n/10.53937 ) =
  []
 
-[4] (./HW3.aux) ) 
+[5] (./HW3.aux) ) 
 Here is how much of TeX's memory you used:
  13283 strings out of 479418
  296512 string characters out of 5888105
@@ -1072,4 +1072,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  62i,15n,100p,817b,574s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on HW3.pdf (4 pages).
+Output written on HW3.pdf (5 pages).

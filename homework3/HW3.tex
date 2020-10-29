@@ -160,12 +160,45 @@
 		\begin{equation*}
 			{\rm F}(a)=\frac{1}{2}\sum_{i}(Y_i - aX_i)^2
 		\end{equation*} 
+		\begin{solution}
+			\begin{equation*}
+				p(Y|X,a) = \frac{1}{\sqrt{2\pi \sigma}}e^{-\frac{(Y-ax)^2}{2\sigma^2}}
+			\end{equation*}
+			\begin{equation*}
+				L(a) = \prod_{i = 1}^{n}P(Y_i|X_i,a) = (2\pi\sigma)^{-\frac{n}{2}}e^{-\frac{1}{2\sigma^2}}\sum_{i = 1}^{n}(Y_i - ax_i)^2
+			\end{equation*}
+			\begin{equation*}
+				\ln L(a) = -\frac{n}{2}\ln (2\pi \sigma) - \frac{1}{2 \sigma^2}\sum_{i = 1}^{n}(Y_i - a X_i)^2
+			\end{equation*}
+			\begin{equation*}
+				\frac{\partial}{\partial a}\ln L(a) = -\frac{1}{\sigma^2}\sum_{i = 1}^{n}(aX_i^2 - X_iY_i)
+			\end{equation*}
+			\begin{equation*}
+				\hat{a} = \frac{\sum_{i = 1}^{n}X_iY_i}{\sum_{i = 1}^{n}X_i^2}
+			\end{equation*}
+		\end{solution}
 		\item
 		If a data point y follows the Posson distribution with rate parameter $\theta$, then the probability of a single observation y is 
 		\begin{equation*}
 			p(y|\theta)=\frac{\theta^ye^{-\theta}}{y!}, for \  y = 0,1,2,...
 		\end{equation*}
 		You are given data points $y_1,...,y_n$ independently drawn from a Poisson distribution with parameter $\theta$. Write down the log-likelihood of the data as a function of $\theta$.
+		\begin{solution}
+			\begin{equation*}
+			\begin{aligned}
+				L(y_1,y_2,...,y_n|\theta) = \prod_{i = 1}^{n} \frac{\theta^{y_i}}{y_i !}e^{-\theta}=e^{-n\theta}\prod_{u=1}^{n}\frac{\theta^{y_i}}{y_i !}
+			\end{aligned}
+			\end{equation*}
+			\begin{equation*}
+				\ln L = -n \theta + \sum_{i = 1}^{n}(y_i\ln \theta - \ln y_i)
+			\end{equation*}
+			\begin{equation*}
+				\frac{d \ln L}{d \theta} = -n + \sum_{i = 1}^{n}\frac{y_i}{\theta}
+			\end{equation*}
+			\begin{equation*}
+				\theta = \frac{1}{n}\sum_{i = 1}^{n}y_i
+			\end{equation*}
+		\end{solution}
 		\item
 		Suppose you are given n obserbations, $X_1,...X_n$, independent and identically distributed with a Gamma$(\alpha,\lambda)$ distribution. The following informaztion might be useful for the problem.
 		\begin{enumerate}
@@ -175,7 +208,23 @@
 			The probabiliuty density function of $X \sim$ Gamma($\alpha$,$\lambda$) is $f_X(x)=\frac{1}{\Gamma(\alpha)}\lambda^\alpha x^{\alpha - 1}e^{-\lambda x}$ where the function $\Gamma$ is only dependent on $\alpha$ and not $\lambda$.
 		\end{enumerate}
 		Suppose, we are given a known, fixed value for $\alpha$. Compute the maximum likelihood estimator for $\lambda$.
-		
+		\begin{solution}
+			\begin{equation*}
+			p(x_n) = \frac{1}{\Gamma (\alpha)}\lambda^\alpha x_n^{\alpha -  1}e^{-\lambda x_n}
+			\end{equation*}
+			\begin{equation*}
+			\ln p(x_n) = \alpha \ln \lambda - \ln \Gamma (\alpha) + (\alpha - 1)\ln x_n - \lambda x_n
+			\end{equation*}
+			\begin{equation*}
+				L(x;\alpha,\lambda) = \sum_{i = 1}^{n} \ln p(x_i)=n\alpha \ln \lambda - n \ln \Gamma (\alpha) + (\alpha - 1)\ln \sum_{i = 1}^{n}x_i - \lambda \sum_{i = 1}^{n} x_i
+			\end{equation*}
+			\begin{equation*}
+				\frac{\partial}{\partial \lambda}L(x;\alpha,\lambda)=\frac{n\alpha}{\lambda}-\sum_{i = 1}^{n} x_i
+			\end{equation*}
+			\begin{equation*}
+				\hat{\lambda} = \frac{n\alpha}{\sum_{i = 1}^{n} x_i}
+			\end{equation*}
+		\end{solution}
 	\end{enumerate}
 \end{document}
 \begin{equation}
